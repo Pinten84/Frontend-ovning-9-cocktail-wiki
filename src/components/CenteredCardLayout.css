@@ -1,0 +1,19 @@
+/* CenteredCardLayout.css */
+.centered-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px) brightness(0.7);
+  z-index: 0;
+}
+.centered-card-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 32px;
+  color: #fbbf24;
+  margin-bottom: 18px;
+  letter-spacing: 1.5px;
+  text-shadow: 2px 2px 0 #2b3a55, 0 2px 8px #a1c4fd99;
+}

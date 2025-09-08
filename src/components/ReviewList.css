@@ -1,0 +1,16 @@
+/* ReviewList.css */
+.review-list {
+  margin-top: 24px;
+}
+.review-list-title {
+  font-size: 20px;
+  margin: 0 0 12px 0;
+}
+.review-list-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+.review-list-text {
+  font-size: 15px;
+  margin-top: 4px;
+}

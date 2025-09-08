@@ -1,0 +1,16 @@
+{
+  "name": "Cocktail Wiki",
+  "short_name": "CocktailWiki",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fbbf24",
+  "theme_color": "#fbbf24",
+  "description": "Upptäck, sök och spara dina favoritdrinkar från The Cocktail DB.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
