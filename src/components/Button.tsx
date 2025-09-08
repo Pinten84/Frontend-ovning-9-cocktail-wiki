@@ -4,6 +4,7 @@ import "./Button.css";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   danger?: boolean;
   icon?: React.ReactNode;
+  "aria-label"?: string;
 }
 
 const Button: React.FC<Props> = ({ danger, className = "", icon, children, ...props }) => {
@@ -14,7 +15,7 @@ const Button: React.FC<Props> = ({ danger, className = "", icon, children, ...pr
     className
   ].filter(Boolean).join(" ");
   return (
-    <button className={btnClass} {...props}>
+    <button className={btnClass} aria-label={props["aria-label"]} {...props}>
       {icon && <span className="custom-btn-icon">{icon}</span>}
       {children}
     </button>

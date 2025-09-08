@@ -13,7 +13,7 @@ interface Props {
 
 const CocktailCard: React.FC<Props> = ({ id, name, thumbnail, buttonText, onButtonClick, buttonDisabled }) => (
   <div className="cocktail-card">
-    <Link to={`/cocktail/${id}`} className="cocktail-card-link" aria-label={`Visa mer info om ${name}`}>
+    <Link to={`/cocktail/${id}`} className="cocktail-card-link" aria-label={`Visa mer info om ${name}`}> 
       <img
         src={thumbnail}
         alt={name}
@@ -26,6 +26,7 @@ const CocktailCard: React.FC<Props> = ({ id, name, thumbnail, buttonText, onButt
       className="cocktail-card-main-btn"
       onClick={() => window.location.href = `/cocktail/${id}`}
       disabled={buttonDisabled}
+      aria-label={`Mer info om ${name}`}
     >
       Mer info <span role="img" aria-label="drink" className="cocktail-card-drinkicon">🍸</span>
     </button>
@@ -34,6 +35,7 @@ const CocktailCard: React.FC<Props> = ({ id, name, thumbnail, buttonText, onButt
         className="cocktail-card-extra-btn"
         onClick={onButtonClick}
         disabled={buttonDisabled}
+        aria-label={buttonText}
       >
         {buttonText}
       </button>

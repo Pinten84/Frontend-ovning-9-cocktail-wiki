@@ -11,12 +11,13 @@ interface Props {
 }
 
 const CocktailList: React.FC<Props> = ({ items }) => (
-  <ul className="cocktail-list">
+  <ul className="cocktail-list" aria-label="Lista över drinkar">
     {items.map(item => (
       <li key={item.id} className="cocktail-item">
         <Link
           to={`/cocktail/${item.id}`}
           className="cocktail-link"
+          aria-label={`Visa info om ${item.name}`}
         >
           {item.name}
         </Link>

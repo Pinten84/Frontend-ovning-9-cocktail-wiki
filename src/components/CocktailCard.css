@@ -14,23 +14,24 @@
 	box-shadow: 0 1px 8px #e0e7ef;
 	display: block;
 }
-.cocktail-card-title {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 6%;
-	border-radius: 0;
-	color: #fff;
-	font-family: 'Pacifico, Montserrat, Inter, sans-serif';
-	font-size: 76px;
-	padding: 0 12px;
-	text-align: center;
-	z-index: 2;
-	pointer-events: none;
-	user-select: none;
-	line-height: 1.05;
-	-webkit-text-stroke: 1.5px #f3f3f3;
-	text-shadow: 0 8px 32px #000f, 0 2px 12px #000c, 0 1px 0 #fff3, 0 2px 8px #000a;
+.cocktail-card-title,
+.cocktail-info-title-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6%;
+  border-radius: 0;
+  color: #fff;
+  font-family: 'Pacifico', cursive !important;
+  font-size: 76px;
+  padding: 0 12px;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1.05;
+  -webkit-text-stroke: 1.5px #f3f3f3;
+  text-shadow: 0 8px 32px #000f, 0 2px 12px #000c, 0 1px 0 #fff3, 0 2px 8px #000a;
 }
 .cocktail-card-main-btn {
 	margin-top: 18px;

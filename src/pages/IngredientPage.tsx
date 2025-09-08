@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import "./IngredientPage.css";
 
 interface Ingredient {
   id: string;
@@ -57,16 +58,18 @@ const IngredientPage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
+      <Helmet>  
         <title>{ingredient ? `${ingredient.name} | Cocktail Wiki` : "Ingrediens | Cocktail Wiki"}</title>
         <meta name="description" content={ingredient ? `Drinkar med ${ingredient.name}.` : "Drinkar per ingrediens."} />
       </Helmet>
   <div className="page-card">
       <Link
         to="/search"
-        className="ingredient-back-link"
+        className="custom-btn ingredient-back-link"
+        aria-label="Tillbaka till sök"
       >
-         Tillbaka till s6k
+  <span aria-hidden="true" className="ingredient-back-arrow">👈</span>
+        Tillbaka till sök
       </Link>
   <h2 className="page-title">{ingredient.name}</h2>
       <p><b>Typ:</b> {ingredient.type}</p>

@@ -19,8 +19,10 @@ const CenteredCardLayout: React.FC<Props> = ({ title, children }) => {
   {/* Background image */}
       <img
         src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
-        alt="Strand i solnedgång"
+        alt=""
         className="centered-card-bg"
+        aria-hidden="true"
+        role="presentation"
       />
       <div className="centered-card-content">
         <h1 className="centered-card-title">{title}</h1>

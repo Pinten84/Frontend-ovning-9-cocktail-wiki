@@ -1,0 +1,174 @@
+.global-palm {
+  position: fixed;
+  right: 24px;
+  bottom: 32px;
+  z-index: 40;
+  filter: drop-shadow(0 4px 16px #43e97b55);
+  pointer-events: none;
+  transition: transform 0.2s;
+}
+.medium-palm {
+  width: 420px !important;
+  height: 420px !important;
+  min-width: 420px;
+  min-height: 420px;
+}
+.coconut-pile {
+  position: fixed;
+  right: 120px;
+  bottom: 24px;
+  width: 180px;
+  height: 120px;
+  pointer-events: none;
+  z-index: 41;
+}
+.coconut-emoji {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 6px #8d674855);
+  opacity: 1;
+  transition: bottom 0.2s, left 0.2s, transform 0.2s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.coconut-falling {
+  animation: coconut-fall-real-big 1.2s cubic-bezier(.4,1.6,.4,1), coconut-roll 0.7s 1.1s cubic-bezier(.4,1.6,.4,1) forwards;
+}
+@keyframes coconut-fall-real-big {
+  0% {
+    bottom: 700px;
+    opacity: 0.2;
+    transform: scale(1.2) rotate(-30deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) rotate(20deg);
+  }
+  100% {
+    bottom: 0;
+    opacity: 1;
+    transform: scale(1) rotate(var(--coco-rot, 0deg));
+  }
+}
+@keyframes coconut-roll {
+  0% {
+    transform: scale(1) rotate(var(--coco-rot, 0deg));
+  }
+  100% {
+    transform: scale(1) rotate(var(--coco-roll, 0deg));
+  }
+}
+/* App.css: Styles for App.tsx. Use utility classes from global.css where possible. */
+
+
+.main {
+  min-height: 100vh;
+  background:
+    linear-gradient(120deg, #f9d29d 0%, #ffd6e0 40%, #a1c4fd 100%),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, top;
+  font-family: 'Quicksand', Inter, Segoe UI, Arial, sans-serif;
+  color: #222;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(43, 58, 85, 0.12);
+}
+
+.logo-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 84px;
+  margin: 0;
+  letter-spacing: 2.5px;
+  color: #fbbf24;
+  text-shadow: 2px 2px 0 #2b3a55, 0 2px 8px #a1c4fd99;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.emoji {
+  font-size: 54px;
+  color: #fbbf24;
+  margin-top: 2px;
+  text-shadow: 2px 2px 0 #2b3a55;
+}
+
+.slogan {
+  color: #4b5563;
+  font-size: 17px;
+  margin: 18px 0 36px 0;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  font-style: italic;
+  text-shadow: none;
+}
+
+.slogan-source {
+  font-weight: 600;
+  color: #2563eb;
+  text-shadow: none;
+  font-style: normal;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: stretch;
+  background: linear-gradient(180deg, #43e97b 0%, #38f9d7 40%, #fbbf24 100%);
+  border-bottom: 2px solid #fbbf24;
+  margin-bottom: 24px;
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: 1.5px;
+  box-shadow: 0 2px 12px #38f9d755;
+  min-height: 64px;
+  font-family: 'Quicksand', Inter, Segoe UI, Arial, sans-serif;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(2px) saturate(1.1);
+}
+
+.relative {
+  position: relative;
+}
+
+.footer {
+  text-align: center;
+  margin: 48px 0 16px 0;
+  color: #888;
+}

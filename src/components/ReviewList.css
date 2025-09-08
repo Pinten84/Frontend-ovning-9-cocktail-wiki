@@ -1,3 +1,12 @@
+/* Gula stjärnor för betyg */
+.review-list-stars .star {
+  color: #fbbf24;
+  font-size: 18px;
+  margin-left: 1px;
+  margin-right: 1px;
+  vertical-align: middle;
+  text-shadow: 1px 1px 2px #e0e7ef;
+}
 /* ReviewList.css */
 .review-list {
   margin-top: 24px;
@@ -9,8 +18,24 @@
 .review-list-name {
   font-weight: 600;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.review-list-dash {
+  color: #bbb;
+  font-size: 15px;
 }
 .review-list-text {
   font-size: 15px;
   margin-top: 4px;
+  font-style: italic;
+  color: #374151;
+}
+.review-list-item {
+  background: #f9fafb;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px #e0e7ef;
+  padding: 14px;
+  margin-bottom: 10px;
 }
