@@ -1,4 +1,4 @@
-/* Utility classes for page layout */
+/* Layout utility classes */
 .page-card {
   max-width: 800px;
   margin: 2rem auto;
@@ -39,7 +39,9 @@
 }
 
 /* Input/select shared style */
-.input-style, .search-input, .search-select {
+.input-style,
+.search-input,
+.search-select {
   flex: 1;
   padding: 12px 16px;
   border-radius: 14px;
@@ -49,7 +51,9 @@
   outline: none;
   background: linear-gradient(90deg, #fffbe6 60%, #e0ffe6 100%);
   color: #2b3a55;
-  box-shadow: 0 1px 8px 0 #38f9d733, 0 1.5px 0 #fffbe6 inset;
+  box-shadow:
+    0 1px 8px 0 #38f9d733,
+    0 1.5px 0 #fffbe6 inset;
 }
 /* Global variables */
 
@@ -64,14 +68,23 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Buttons */
 
 /* Links */
-.cocktail-link, .cocktail-link:visited, .cocktail-info-ingredient-link, .cocktail-info-ingredient-link:visited {
+.cocktail-link,
+.cocktail-link:visited,
+.cocktail-info-ingredient-link,
+.cocktail-info-ingredient-link:visited {
   color: #fff !important;
   background: linear-gradient(90deg, var(--trop-turq) 0%, var(--trop-green) 100%) !important;
   text-decoration: none !important;
@@ -81,21 +94,28 @@
   font-size: 16px;
   margin-right: 4px;
   box-shadow: 0 1px 4px #38f9d733;
-  transition: background 0.18s, color 0.18s, box-shadow 0.18s, opacity 0.18s;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    box-shadow 0.18s,
+    opacity 0.18s;
   opacity: 0.92;
   display: inline-block;
 }
-.cocktail-link:hover, .cocktail-info-ingredient-link:hover {
+.cocktail-link:hover,
+.cocktail-info-ingredient-link:hover {
   background: linear-gradient(90deg, var(--trop-yellow) 0%, var(--trop-turq) 100%) !important;
   opacity: 1;
 }
 
 /* Fade animation for lists */
-.cocktail-item, .review-list-item {
-  animation: fadeIn 0.7s cubic-bezier(.4,1.6,.4,1);
+.cocktail-item,
+.review-list-item {
+  animation: fadeIn 0.7s cubic-bezier(0.4, 1.6, 0.4, 1);
 }
-.cocktail-link, .cocktail-info-ingredient-link {
-  animation: fadeIn 0.9s cubic-bezier(.4,1.6,.4,1);
+.cocktail-link,
+.cocktail-info-ingredient-link {
+  animation: fadeIn 0.9s cubic-bezier(0.4, 1.6, 0.4, 1);
 }
 
 /* Box and shadow helpers */
@@ -115,7 +135,8 @@
 /* Navigation */
 
 /* Error messages */
-.form-error, .review-form-captcha-error {
+.form-error,
+.review-form-captcha-error {
   color: red;
   margin-left: 8px;
 }

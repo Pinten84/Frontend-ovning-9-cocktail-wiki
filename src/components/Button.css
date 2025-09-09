@@ -1,11 +1,16 @@
-/* Button.css */
-/* Allmänna knappklasser finns nu i global.css */
+/* Button styles */
+/* Common button classes are now in global.css */
 
 .custom-btn {
   padding: 12px 28px;
   border-radius: 18px;
   border: none;
-  background: linear-gradient(90deg, var(--trop-green) 0%, var(--trop-turq) 50%, var(--trop-yellow) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--trop-green) 0%,
+    var(--trop-turq) 50%,
+    var(--trop-yellow) 100%
+  );
   color: #fff;
   font-weight: 700;
   font-size: 17px;
@@ -14,7 +19,9 @@
   box-shadow: var(--trop-shadow);
   opacity: 1;
   margin-top: 8px;
-  transition: transform 0.08s, box-shadow 0.08s;
+  transition:
+    transform 0.08s,
+    box-shadow 0.08s;
   outline: none;
   display: inline-flex;
   align-items: center;
@@ -35,4 +42,22 @@
 .custom-btn-icon {
   margin-right: 8px;
   display: inline-block;
+}
+
+@keyframes pop-anim {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1.08);
+    opacity: 0.92;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.pop-anim {
+  animation: pop-anim 0.22s cubic-bezier(0.4, 1.6, 0.4, 1);
 }

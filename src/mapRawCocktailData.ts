@@ -1,6 +1,6 @@
-import type { ICocktail } from "./types";
+import type { ICocktail, RawCocktail } from './types';
 
-export function mapRawCocktailData(rawCocktail: any): ICocktail {
+export function mapRawCocktailData(rawCocktail: RawCocktail): ICocktail {
   return {
     id: rawCocktail.idDrink,
     name: rawCocktail.strDrink,
@@ -11,10 +11,15 @@ export function mapRawCocktailData(rawCocktail: any): ICocktail {
     instructions: rawCocktail.strInstructions,
     thumbnail: rawCocktail.strDrinkThumb,
     ingredients: Array.from({ length: 15 })
-      .map((_, i) => ({
-        ingredient: rawCocktail[`strIngredient${i + 1}`],
-        measure: rawCocktail[`strMeasure${i + 1}`],
-      }))
-      .filter((item) => item.ingredient),
+      .map((_, i) => {
+        const ingredient = rawCocktail[`strIngredient${i + 1}`];
+        const measure = rawCocktail[`strMeasure${i + 1}`];
+        if (!ingredient) return null;
+        return {
+          ingredient: ingredient,
+          measure: measure ?? null,
+        };
+      })
+      .filter((item): item is { ingredient: string; measure: string | null } => !!item),
   };
 }

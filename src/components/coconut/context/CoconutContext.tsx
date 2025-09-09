@@ -1,34 +1,13 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import type { ReactNode } from "react";
 
-export interface Coconut {
-  id: number;
-  animating: boolean;
-  x: number;
-  y: number;
-  rot: number;
-  roll: number;
-  variant: number;
-  fallX: number;
-}
+import { useState, useEffect } from 'react';
+import { CoconutContext } from './coconutContextInstance';
+import type { ReactNode } from 'react';
+import type { Coconut } from './coconutContextTypes';
 
-interface CoconutContextType {
-  coconuts: Coconut[];
-  setCoconuts: React.Dispatch<React.SetStateAction<Coconut[]>>;
-  coconutId: number;
-  setCoconutId: React.Dispatch<React.SetStateAction<number>>;
-}
 
-const CoconutContext = createContext<CoconutContextType | undefined>(undefined);
 
-export const useCoconutContext = () => {
-  const ctx = useContext(CoconutContext);
-  if (!ctx) throw new Error("useCoconutContext must be used within CoconutProvider");
-  return ctx;
-};
-
-const COCONUTS_KEY = "coconuts";
-const COCONUT_ID_KEY = "coconutId";
+const COCONUTS_KEY = 'coconuts';
+const COCONUT_ID_KEY = 'coconutId';
 
 export const CoconutProvider = ({ children }: { children: ReactNode }) => {
   const [coconuts, setCoconuts] = useState<Coconut[]>(() => {

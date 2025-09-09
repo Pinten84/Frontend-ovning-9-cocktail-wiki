@@ -1,5 +1,5 @@
-import React from "react";
-import "./ImageModal.css";
+import React from 'react';
+import './ImageModal.css';
 
 interface Props {
   src: string;
@@ -8,7 +8,13 @@ interface Props {
 }
 
 const ImageModal: React.FC<Props> = ({ src, alt, onClose }) => (
-  <div className="modal-bg" onClick={onClose} role="dialog" aria-modal="true" aria-label="Bildmodal">
+  <div
+    className="modal-bg"
+    onClick={onClose}
+    role="dialog"
+    aria-modal="true"
+    aria-label="Bildmodal"
+  >
     <div className="modal-img-container">
       <img
         src={src}

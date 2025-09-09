@@ -1,0 +1,11 @@
+node_modules/
+build/
+dist/
+*.log
+*.lock
+*.tmp
+*.cache
+coverage/
+.vscode/
+.env
+*.css.d.ts

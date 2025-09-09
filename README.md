@@ -3,6 +3,7 @@
 A playful, modern cocktail wiki built with React, Vite, and TypeScript. Discover, search, and save your favorite drinks from TheCocktailDB – with a tropical twist!
 
 ## Features
+
 - Search and browse cocktails from TheCocktailDB
 - Save favorites locally
 - Write and view reviews for each drink
@@ -25,6 +26,7 @@ A playful, modern cocktail wiki built with React, Vite, and TypeScript. Discover
    Visit [http://localhost:5173](http://localhost:5173)
 
 ## Project Structure
+
 - `src/components/` – Reusable UI components (NavButton, CoconutPile, SVGs, etc)
 - `src/pages/` – Page components for routing
 - `src/global.css` – Global styles and variables
@@ -32,8 +34,10 @@ A playful, modern cocktail wiki built with React, Vite, and TypeScript. Discover
 - `src/components/CoconutContext.tsx` – Global coconut state (with localStorage persistence)
 
 ## Credits
+
 - [TheCocktailDB](https://www.thecocktaildb.com/) for drink data
 - Palm/coconut SVGs and playful UI by Pinten84
 
 ## License
+
 MIT

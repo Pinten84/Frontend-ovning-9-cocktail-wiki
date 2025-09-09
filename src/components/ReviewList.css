@@ -1,4 +1,4 @@
-/* Gula stjärnor för betyg */
+/* Yellow stars for rating */
 .review-list-stars .star {
   color: #fbbf24;
   font-size: 18px;
@@ -7,7 +7,7 @@
   vertical-align: middle;
   text-shadow: 1px 1px 2px #e0e7ef;
 }
-/* ReviewList.css */
+/* Review list styles */
 .review-list {
   margin-top: 24px;
 }

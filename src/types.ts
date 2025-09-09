@@ -14,3 +14,33 @@ export interface ICocktail {
   thumbnail: string;
   ingredients: IIngredient[];
 }
+
+export interface RawCocktail {
+  idDrink: string;
+  strDrink: string;
+  strTags?: string;
+  strCategory: string;
+  strAlcoholic: string;
+  strGlass: string;
+  strInstructions: string;
+  strDrinkThumb: string;
+  [key: `strIngredient${number}`]: string | undefined;
+  [key: `strMeasure${number}`]: string | undefined;
+}
+
+export interface DrinkApi {
+  idDrink: string;
+  strDrink: string;
+}
+
+export interface CategoryApi {
+  strCategory: string;
+}
+
+export interface GlassApi {
+  strGlass: string;
+}
+
+export interface IngredientApi {
+  strIngredient1: string;
+}

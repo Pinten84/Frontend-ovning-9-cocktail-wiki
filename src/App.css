@@ -30,13 +30,18 @@
   pointer-events: none;
   filter: drop-shadow(0 2px 6px #8d674855);
   opacity: 1;
-  transition: bottom 0.2s, left 0.2s, transform 0.2s;
+  transition:
+    bottom 0.2s,
+    left 0.2s,
+    transform 0.2s;
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
 .coconut-falling {
-  animation: coconut-fall-real-big 1.2s cubic-bezier(.4,1.6,.4,1), coconut-roll 0.7s 1.1s cubic-bezier(.4,1.6,.4,1) forwards;
+  animation:
+    coconut-fall-real-big 1.2s cubic-bezier(0.4, 1.6, 0.4, 1),
+    coconut-roll 0.7s 1.1s cubic-bezier(0.4, 1.6, 0.4, 1) forwards;
 }
 @keyframes coconut-fall-real-big {
   0% {
@@ -64,7 +69,6 @@
 }
 /* App.css: Styles for App.tsx. Use utility classes from global.css where possible. */
 
-
 .main {
   min-height: 100vh;
   background:
@@ -73,7 +77,12 @@
   background-size: cover, cover;
   background-repeat: no-repeat, no-repeat;
   background-position: center, top;
-  font-family: 'Quicksand', Inter, Segoe UI, Arial, sans-serif;
+  font-family:
+    'Quicksand',
+    Inter,
+    Segoe UI,
+    Arial,
+    sans-serif;
   color: #222;
   width: 100vw;
   box-sizing: border-box;
@@ -113,7 +122,9 @@
   margin: 0;
   letter-spacing: 2.5px;
   color: #fbbf24;
-  text-shadow: 2px 2px 0 #2b3a55, 0 2px 8px #a1c4fd99;
+  text-shadow:
+    2px 2px 0 #2b3a55,
+    0 2px 8px #a1c4fd99;
   display: inline-block;
   text-transform: uppercase;
 }
@@ -157,7 +168,12 @@
   letter-spacing: 1.5px;
   box-shadow: 0 2px 12px #38f9d755;
   min-height: 64px;
-  font-family: 'Quicksand', Inter, Segoe UI, Arial, sans-serif;
+  font-family:
+    'Quicksand',
+    Inter,
+    Segoe UI,
+    Arial,
+    sans-serif;
   position: relative;
   z-index: 2;
   backdrop-filter: blur(2px) saturate(1.1);

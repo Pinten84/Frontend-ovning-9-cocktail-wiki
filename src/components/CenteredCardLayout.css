@@ -15,7 +15,9 @@
   color: #fbbf24;
   margin-bottom: 18px;
   letter-spacing: 1.5px;
-  text-shadow: 2px 2px 0 #2b3a55, 0 2px 8px #a1c4fd99;
+  text-shadow:
+    2px 2px 0 #2b3a55,
+    0 2px 8px #a1c4fd99;
 }
 .centered-card-layout {
   position: relative;

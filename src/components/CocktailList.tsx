@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Item {
   id: string;
@@ -12,7 +12,7 @@ interface Props {
 
 const CocktailList: React.FC<Props> = ({ items }) => (
   <ul className="cocktail-list" aria-label="Lista över drinkar">
-    {items.map(item => (
+    {items.map((item) => (
       <li key={item.id} className="cocktail-item">
         <Link
           to={`/cocktail/${item.id}`}
