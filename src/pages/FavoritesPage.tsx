@@ -31,34 +31,16 @@ const FavoritesPage: React.FC = () => {
           <ul className="unstyled-list" aria-label="Lista över favoriter">
             {favorites.map((cocktail) => (
               <li key={cocktail.id} className="card-list-item">
-                <span
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 12,
-                    flex: 1,
-                    minWidth: 0,
-                    maxWidth: 400,
-                    overflow: 'hidden',
-                  }}
-                >
+                <span className="favorites-list-item-content">
                   <Link
                     to={`/cocktail/${cocktail.id}`}
                     aria-label={`Visa info om ${cocktail.name}`}
-                    style={{ display: 'inline-block', marginRight: 18 }}
+                    className="favorites-list-img-link"
                   >
                     <img
                       src={cocktail.thumbnail}
                       alt={cocktail.name}
-                      style={{
-                        width: 72,
-                        height: 72,
-                        borderRadius: 16,
-                        objectFit: 'cover',
-                        boxShadow: '0 2px 8px #e0e7ef',
-                        flexShrink: 0,
-                        background: '#fff',
-                      }}
+                      className="favorites-list-img"
                       loading="lazy"
                       aria-label={`Bild på ${cocktail.name}`}
                     />
@@ -66,28 +48,19 @@ const FavoritesPage: React.FC = () => {
                   <div style={{ minWidth: 0 }}>
                     <Link
                       to={`/cocktail/${cocktail.id}`}
-                      style={{
-                        color: 'inherit',
-                        textDecoration: 'none',
-                        fontWeight: 600,
-                        fontSize: 18,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                        display: 'block',
-                      }}
+                      className="favorites-list-name-link"
                       aria-label={`Visa info om ${cocktail.name}`}
                     >
                       {cocktail.name}
                     </Link>
-                    <span style={{ color: '#888', fontSize: 14, fontWeight: 400 }}>
+                    <span className="favorites-list-category">
                       {cocktail.category}
                     </span>
                   </div>
                 </span>
                 <Button
                   danger
-                  style={{ marginLeft: 12, padding: '6px 16px', whiteSpace: 'nowrap' }}
+                  className="favorites-remove-btn"
                   onClick={() => handleRemove(cocktail.id)}
                   aria-label={`Ta bort ${cocktail.name} från favoriter`}
                 >

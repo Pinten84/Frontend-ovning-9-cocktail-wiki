@@ -1,7 +1,7 @@
 import { sanitizeInput } from '../sanitizeInput';
 import { Helmet } from 'react-helmet';
 import Button from '../components/Button';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { mapRawCocktailData } from '../mapRawCocktailData';
 import type { ICocktail } from '../types';
 import CocktailList from '../components/CocktailList';
@@ -11,6 +11,7 @@ const PAGE_SIZE = 10;
 
 const SearchPage: React.FC = () => {
   const [query, setQuery] = useState('');
+  const debounceTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [category, setCategory] = useState('');
   const [ingredient, setIngredient] = useState('');
   const [glass, setGlass] = useState('');
@@ -34,86 +35,74 @@ const SearchPage: React.FC = () => {
   .then((data) => setIngredientList(data.drinks?.map((d: import('../types').IngredientApi) => d.strIngredient1) || []));
   }, []);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Debounced sökfunktion
+  const doSearch = async (q: string, ingr: string, cat: string, gl: string) => {
     setLoading(true);
     setError('');
     setResults([]);
     setPage(1);
     try {
-      // Bygg cache-nyckel
-      const cacheKey = `search_${query}_${ingredient}_${category}_${glass}`;
+      const cacheKey = `search_${q}_${ingr}_${cat}_${gl}`;
       const cached = localStorage.getItem(cacheKey);
       if (cached) {
         setResults(JSON.parse(cached));
         setLoading(false);
         return;
       }
-
       let cocktails: ICocktail[] = [];
-
-      // Fritextsök
-      if (query.trim()) {
+      if (q.trim()) {
         const url =
-          'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + encodeURIComponent(query);
+          'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + encodeURIComponent(q);
         const res = await fetch(url);
         const data = await res.json();
         cocktails = data.drinks ? data.drinks.map(mapRawCocktailData) : [];
-
-        // Filtrera på ingrediens
-        if (ingredient.trim()) {
+        if (ingr.trim()) {
           const resIng = await fetch(
-            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(ingredient)}`
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(ingr)}`
           );
           const dataIng = await resIng.json();
           const ids = new Set((dataIng.drinks || []).map((d: import('../types').DrinkApi) => d.idDrink));
           cocktails = cocktails.filter((c) => ids.has(c.id));
         }
-        // Filtrera på kategori
-        if (category) {
-          cocktails = cocktails.filter((c) => c.category === category);
+        if (cat) {
+          cocktails = cocktails.filter((c) => c.category === cat);
         }
-        // Filtrera på glastyp
-        if (glass) {
-          cocktails = cocktails.filter((c) => c.glass === glass);
+        if (gl) {
+          cocktails = cocktails.filter((c) => c.glass === gl);
         }
-      } else if (ingredient || category || glass) {
-        // Endast filter, ingen fritext
+      } else if (ingr || cat || gl) {
         const idSets: Array<Set<string>> = [];
-  let baseList: import('../types').DrinkApi[] | null = null;
-
-        if (ingredient) {
+        let baseList: import('../types').DrinkApi[] | null = null;
+        if (ingr) {
           const resIng = await fetch(
-            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(ingredient)}`
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(ingr)}`
           );
           const dataIng = await resIng.json();
           if (!dataIng.drinks) dataIng.drinks = [];
           idSets.push(new Set(dataIng.drinks.map((d: import('../types').DrinkApi) => d.idDrink)));
           if (!baseList) baseList = dataIng.drinks;
         }
-        if (category) {
+        if (cat) {
           const resCat = await fetch(
-            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(category)}`
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${encodeURIComponent(cat)}`
           );
           const dataCat = await resCat.json();
           if (!dataCat.drinks) dataCat.drinks = [];
           idSets.push(new Set(dataCat.drinks.map((d: import('../types').DrinkApi) => d.idDrink)));
           if (!baseList) baseList = dataCat.drinks;
         }
-        if (glass) {
+        if (gl) {
           const resGlass = await fetch(
-            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${encodeURIComponent(glass)}`
+            `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${encodeURIComponent(gl)}`
           );
           const dataGlass = await resGlass.json();
           if (!dataGlass.drinks) dataGlass.drinks = [];
           idSets.push(new Set(dataGlass.drinks.map((d: import('../types').DrinkApi) => d.idDrink)));
           if (!baseList) baseList = dataGlass.drinks;
         }
-        // Intersektera idSets
         const filtered = (baseList || []).filter((d: import('../types').DrinkApi) =>
           idSets.every((set) => set.has(d.idDrink))
         );
-        // Hämta drinkdetaljer
         const cocktailResults = await Promise.all(
           filtered.map(async (d: import('../types').DrinkApi) => {
             const res = await fetch(
@@ -125,7 +114,6 @@ const SearchPage: React.FC = () => {
         );
         cocktails = cocktailResults.filter((c): c is ICocktail => Boolean(c));
       }
-
       if (!cocktails || cocktails.length === 0) {
         setError('No cocktails found.');
       }
@@ -137,6 +125,18 @@ const SearchPage: React.FC = () => {
       setLoading(false);
     }
   };
+
+  // Debounce sökning på query och filter
+  useEffect(() => {
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    debounceTimeout.current = setTimeout(() => {
+      doSearch(query, ingredient, category, glass);
+    }, 600);
+    return () => {
+      if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, ingredient, category, glass]);
 
   const paginatedResults = results.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
   const totalPages = Math.ceil(results.length / PAGE_SIZE);
@@ -156,7 +156,7 @@ const SearchPage: React.FC = () => {
         />
       </Helmet>
       <div className="page-card">
-        <form onSubmit={handleSearch} className="search-form">
+  <form className="search-form" onSubmit={e => e.preventDefault()}>
           <input
             type="text"
             value={query}

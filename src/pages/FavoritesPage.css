@@ -1,0 +1,49 @@
+/* FavoritesPage.css: extracted styles */
+
+.favorites-list-item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.favorites-list-img-link {
+  display: inline-block;
+  margin-right: 18px;
+}
+
+.favorites-list-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px #e0e7ef;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.favorites-list-name-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.favorites-list-category {
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.favorites-remove-btn {
+  margin-left: 12px;
+  padding: 6px 16px;
+  white-space: nowrap;
+}
